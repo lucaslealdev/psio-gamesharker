@@ -2,6 +2,10 @@
 
 Welcome to Gamesharker! This program aims to configure all the games on your TF used in PSIO to be multidisc, adding a GameShark you have on the card.
 
+<p align="center">
+  <img src="demo.gif" alt="Demo">
+</p>
+
 ## Requirements
 
 - MENU.SYS File: The program requires the presence of the MENU.SYS file in the same directory as the executable. Otherwise, the program will terminate.
