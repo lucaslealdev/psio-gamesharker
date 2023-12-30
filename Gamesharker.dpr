@@ -1,10 +1,10 @@
-program Project1;
+program Gamesharker;
 
 {%File 'shark.ico'}
 
 uses
   Forms,
-  gamesharker in 'gamesharker.pas' {Form1};
+  gamesharker1 in 'gamesharker1.pas' {Form1};
 
 {$R *.res}
 

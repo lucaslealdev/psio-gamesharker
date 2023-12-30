@@ -531,9 +531,9 @@ object Form1: TForm1
   object Label6: TLabel
     Left = 8
     Top = 584
-    Width = 218
+    Width = 240
     Height = 13
-    Caption = 'https://github.com/lucaslealdev/gamesharker'
+    Caption = 'https://github.com/lucaslealdev/psio-gamesharker'
   end
   object Image1: TImage
     Left = 8
@@ -850,11 +850,11 @@ object Form1: TForm1
     Proportional = True
   end
   object Button1: TButton
-    Left = 216
+    Left = 280
     Top = 536
-    Width = 147
+    Width = 83
     Height = 25
-    Caption = 'Generate DISCLIST.LST'
+    Caption = 'Generate'
     Enabled = False
     TabOrder = 0
     OnClick = Button1Click

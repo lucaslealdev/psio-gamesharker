@@ -1,4 +1,4 @@
-unit gamesharker;
+unit gamesharker1;
 
 interface
 
@@ -40,13 +40,13 @@ const
 var
   CaminhoArquivo: string;
 begin
-  // Obtém o caminho completo para o arquivo MENU.SYS
+  // Obtï¿½m o caminho completo para o arquivo MENU.SYS
   CaminhoArquivo := ExtractFilePath(Application.ExeName) + NomeArquivo;
 
   // Verifica se o arquivo MENU.SYS existe
   if not FileExists(CaminhoArquivo) then
   begin
-    // O arquivo não foi encontrado, exibe uma mensagem e fecha o programa
+    // O arquivo nï¿½o foi encontrado, exibe uma mensagem e fecha o programa
     ShowMessage('The file ' + NomeArquivo + ' was not found. PSIO Gamesharker is going to close now.');
     Application.Terminate;
   end;
@@ -81,7 +81,7 @@ end;
 
 // ...
 
-// Função principal para popular a ListBox1 com os subdiretórios
+// Funï¿½ï¿½o principal para popular a ListBox1 com os subdiretï¿½rios
 procedure PopularListBoxComSubdiretorios;
 var
   SearchRec: TSearchRec;
@@ -90,10 +90,10 @@ var
   I: Integer;
   TipoArquivo: string;
 begin
-  // Obtém o caminho do diretório onde o executável está
+  // Obtï¿½m o caminho do diretï¿½rio onde o executï¿½vel estï¿½
   Caminho := ExtractFilePath(Application.ExeName);
 
-  // Limpa a Form1.ListBox1 antes de adicionarmos os subdiretórios
+  // Limpa a Form1.ListBox1 antes de adicionarmos os subdiretï¿½rios
   Form1.ListBox1.Clear;
 
   // Define os tipos de arquivo desejados (IMG, BIN, ISO)
@@ -102,21 +102,21 @@ begin
   TiposArquivoDesejados[1] := 'BIN';
   TiposArquivoDesejados[2] := 'ISO';
 
-  // Inicia a busca por subdiretórios
+  // Inicia a busca por subdiretï¿½rios
   if FindFirst(Caminho + '*.*', faDirectory, SearchRec) = 0 then
   begin
     try
       repeat
-        // Ignora diretórios especiais ('.' e '..')
+        // Ignora diretï¿½rios especiais ('.' e '..')
         if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
         begin
-          // Verifica se é um diretório
+          // Verifica se ï¿½ um diretï¿½rio
           if (SearchRec.Attr and faDirectory) = faDirectory then
           begin
-            // Verifica se o diretório possui pelo menos um arquivo do tipo desejado
+            // Verifica se o diretï¿½rio possui pelo menos um arquivo do tipo desejado
             if DirectoryHasFilesOfType(Caminho + SearchRec.Name, TiposArquivoDesejados) then
             begin
-              // Adiciona o nome do subdiretório à Form1.ListBox1
+              // Adiciona o nome do subdiretï¿½rio ï¿½ Form1.ListBox1
               Form1.ListBox1.Items.Add(SearchRec.Name);
             end;
           end;
@@ -149,19 +149,19 @@ var
 begin
   AssignFile(ArquivoMultidisc, Diretorio + '\MULTIDISC.LST');
   try
-    // Abre o arquivo em modo Rewrite para sobrescrever o conteúdo existente
+    // Abre o arquivo em modo Rewrite para sobrescrever o conteï¿½do existente
     Rewrite(ArquivoMultidisc);
 
     PrimeiroArquivo := True;
 
     for I := Low(TiposArquivo) to High(TiposArquivo) do
     begin
-      // Procura por arquivos com a extensão desejada
+      // Procura por arquivos com a extensï¿½o desejada
       if FindFirst(Diretorio + '\*.' + TiposArquivo[I], faAnyFile, SearchRec) = 0 then
       begin
         try
           repeat
-            // Ignora diretórios especiais ('.' e '..') e apenas adiciona arquivos
+            // Ignora diretï¿½rios especiais ('.' e '..') e apenas adiciona arquivos
             if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') and (SearchRec.Attr and faDirectory = 0) then
             begin
               NomeArquivo := SearchRec.Name;
@@ -182,7 +182,7 @@ begin
       end;
     end;
 
-    // Adiciona uma linha final contendo o primeiro arquivo encontrado no diretório selecionado no ListBox1 com caminho relativo
+    // Adiciona uma linha final contendo o primeiro arquivo encontrado no diretï¿½rio selecionado no ListBox1 com caminho relativo
     if Form1.ListBox1.ItemIndex >= 0 then
     begin
 
@@ -198,14 +198,14 @@ begin
         end;
        end;
 
-      // Procura pelo primeiro arquivo nas extensões permitidas no diretório selecionado
+      // Procura pelo primeiro arquivo nas extensï¿½es permitidas no diretï¿½rio selecionado
       for I := Low(TiposArquivo) to High(TiposArquivo) do
       begin
         if FindFirst(DiretorioSelecionado + '\*.' + TiposArquivo[I], faAnyFile, SearchRec) = 0 then
         begin
           try
             repeat
-              // Ignora diretórios especiais ('.' e '..') e apenas adiciona arquivos
+              // Ignora diretï¿½rios especiais ('.' e '..') e apenas adiciona arquivos
               if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') and (SearchRec.Attr and faDirectory = 0) then
               begin
                 CaminhoCompleto := DiretorioSelecionado + '\' + SearchRec.Name;
@@ -239,18 +239,18 @@ var
   Caminho: string;
   TiposArquivoDesejados: array of string;
   I: Integer;
-  AlgumItemSelecionado: Boolean; // Variável para verificar se algum item está selecionado
+  AlgumItemSelecionado: Boolean; // Variï¿½vel para verificar se algum item estï¿½ selecionado
 begin
-  // Obtém o caminho do diretório onde o executável está
+  // Obtï¿½m o caminho do diretï¿½rio onde o executï¿½vel estï¿½
   Caminho := ExtractFilePath(Application.ExeName);
 
-  // Define os tipos de arquivo desejados (IMG, BIN, ISO) em maiúsculo e minúsculo
+  // Define os tipos de arquivo desejados (IMG, BIN, ISO) em maiï¿½sculo e minï¿½sculo
   SetLength(TiposArquivoDesejados, 6);
   TiposArquivoDesejados[0] := 'IMG';
   TiposArquivoDesejados[1] := 'BIN';
   TiposArquivoDesejados[2] := 'ISO';
 
-  // Verifica se algum item está selecionado na ListBox1
+  // Verifica se algum item estï¿½ selecionado na ListBox1
   AlgumItemSelecionado := False;
   for I := 0 to ListBox1.Items.Count - 1 do
   begin
@@ -261,7 +261,7 @@ begin
     end;
   end;
 
-  // Se nenhum item estiver selecionado, exibe uma mensagem e sai da função
+  // Se nenhum item estiver selecionado, exibe uma mensagem e sai da funï¿½ï¿½o
   if not AlgumItemSelecionado then
   begin
     ShowMessage('Select the folder where your GameShark image is.');
@@ -271,7 +271,7 @@ begin
   // Itera sobre os itens selecionados da ListBox1
   for I := 0 to ListBox1.Items.Count - 1 do
   begin
-    // Cria o arquivo MULTIDISC.LST no diretório correspondente
+    // Cria o arquivo MULTIDISC.LST no diretï¿½rio correspondente
     CriarArquivoMultidisc(Caminho + ListBox1.Items[I], TiposArquivoDesejados);
   end;
 
@@ -287,7 +287,7 @@ procedure TForm1.ListBox1Click(Sender: TObject);
 var
   I: Integer;
 begin
-// Verifica se algum item está selecionado na ListBox1
+// Verifica se algum item estï¿½ selecionado na ListBox1
   for I := 0 to ListBox1.Items.Count - 1 do
   begin
     if ListBox1.Selected[I] then
