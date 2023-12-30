@@ -20,3 +20,7 @@ Welcome to Gamesharker! This program aims to configure all the games on your TF 
 - If there are issues, check the error messages displayed by the program.
 
 Enjoy Gamesharker!
+
+## Credits
+
+- [Pixel240P on youtube](https://www.youtube.com/watch?v=CtCDeSnygSo) for teaching me how to configure the gameshark with PSIO
