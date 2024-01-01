@@ -10,7 +10,7 @@ uses
 
 begin
   Application.Initialize;
-  Application.Title := 'Gamesharker 1.0';
+  Application.Title := 'Gamesharker 1.0.1';
   Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.

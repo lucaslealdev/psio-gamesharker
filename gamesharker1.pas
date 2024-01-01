@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, XPMan, StdCtrls, FileCtrl, Types, jpeg, ExtCtrls;
+  Dialogs, XPMan, StdCtrls, FileCtrl, Types, jpeg, ExtCtrls, StrUtils;
 
 type
   TForm1 = class(TForm)
@@ -81,19 +81,17 @@ end;
 
 // ...
 
-// Funï¿½ï¿½o principal para popular a ListBox1 com os subdiretï¿½rios
 procedure PopularListBoxComSubdiretorios;
 var
   SearchRec: TSearchRec;
   Caminho: string;
   TiposArquivoDesejados: array of string;
   I: Integer;
-  TipoArquivo: string;
 begin
-  // Obtï¿½m o caminho do diretï¿½rio onde o executï¿½vel estï¿½
+  // Obtém o caminho do diretório onde o executável está
   Caminho := ExtractFilePath(Application.ExeName);
 
-  // Limpa a Form1.ListBox1 antes de adicionarmos os subdiretï¿½rios
+  // Limpa a Form1.ListBox1 antes de adicionarmos os subdiretórios
   Form1.ListBox1.Clear;
 
   // Define os tipos de arquivo desejados (IMG, BIN, ISO)
@@ -102,21 +100,21 @@ begin
   TiposArquivoDesejados[1] := 'BIN';
   TiposArquivoDesejados[2] := 'ISO';
 
-  // Inicia a busca por subdiretï¿½rios
+  // Inicia a busca por subdiretórios
   if FindFirst(Caminho + '*.*', faDirectory, SearchRec) = 0 then
   begin
     try
       repeat
-        // Ignora diretï¿½rios especiais ('.' e '..')
+        // Ignora diretórios especiais ('.' e '..')
         if (SearchRec.Name <> '.') and (SearchRec.Name <> '..') then
         begin
-          // Verifica se ï¿½ um diretï¿½rio
+          // Verifica se é um diretório
           if (SearchRec.Attr and faDirectory) = faDirectory then
           begin
-            // Verifica se o diretï¿½rio possui pelo menos um arquivo do tipo desejado
+            // Verifica se o diretório possui pelo menos um arquivo do tipo desejado
             if DirectoryHasFilesOfType(Caminho + SearchRec.Name, TiposArquivoDesejados) then
             begin
-              // Adiciona o nome do subdiretï¿½rio ï¿½ Form1.ListBox1
+              // Adiciona o nome do subdiretório à Form1.ListBox1
               Form1.ListBox1.Items.Add(SearchRec.Name);
             end;
           end;
@@ -126,7 +124,11 @@ begin
       FindClose(SearchRec);
     end;
   end;
+
+  // Ordena a ListBox1 em ordem alfabética
+  Form1.ListBox1.Sorted := True;
 end;
+
 
 
 
